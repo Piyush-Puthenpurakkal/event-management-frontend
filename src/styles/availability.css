@@ -1,0 +1,666 @@
+/* -------------------------
+   Availability Page Container
+-------------------------- */
+.availability-page-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: "Inter", sans-serif;
+    color: #333;
+}
+
+.availability-header {
+    margin-bottom: 1rem;
+}
+
+.availability-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.availability-subtext {
+    margin: 0;
+    font-size: 1rem;
+    color: #666;
+}
+
+/* -------------------------
+     Switch Row & Controls
+  -------------------------- */
+.switch-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.toggleCheckbox {
+    display: none;
+}
+
+.toggleContainer {
+    display: inline-flex;
+    align-items: center;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    padding: 0.3rem;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.2s;
+}
+
+.toggleOption {
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.toggleCheckbox:not(:checked)+.toggleContainer .toggleAvailability {
+    background-color: #fff;
+    color: #333;
+}
+
+.toggleCheckbox:checked+.toggleContainer .toggleCalendar {
+    background-color: #fff;
+    color: #333;
+}
+
+.toggleCheckbox:checked+.toggleContainer {
+    background-color: #e7e7e7;
+}
+
+/* -------------------------
+     White Box & Top Row
+  -------------------------- */
+.availability-white-box {
+    background-color: #fff;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.availability-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.left-filters {
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+}
+
+.filter-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-label {
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-bottom: 0.2rem;
+    color: #333;
+}
+
+.filter-select {
+    padding: 0.4rem 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+/* -------------------------
+     Center Controls
+  -------------------------- */
+.center-controls {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.left-block {
+    justify-self: start;
+}
+
+.middle-block {
+    justify-self: center;
+}
+
+.right-block {
+    justify-self: end;
+}
+
+.search-input-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.search-bar {
+    width: 200px;
+    padding: 6px 12px 6px 36px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.search-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.today-btn {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.today-btn:hover {
+    background-color: #f2f2f2;
+}
+
+.view-tabs {
+    display: flex;
+    gap: 0.4rem;
+}
+
+.view-tab {
+    background-color: #f2f2f2;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #333;
+    transition: background-color 0.2s;
+}
+
+.view-tab:hover {
+    background-color: #e2e2e2;
+}
+
+.view-tab.active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* -------------------------
+     Availability List View
+  -------------------------- */
+.availability-list-card {
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.availability-day-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.day-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 90px;
+}
+
+.unavailable-checkbox {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.day-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+.unavailable-text {
+    font-size: 0.9rem;
+    color: #999;
+    font-style: italic;
+}
+
+.intervals-area {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+}
+
+.interval-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.intervals-row-container {
+    flex: 1;
+}
+
+.intervals-right-icons {
+    display: flex;
+    gap: 0.75rem;
+    margin-left: auto;
+}
+
+.start-end-box {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.start-end-box input {
+    width: 80px;
+    padding: 0.4rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.85rem;
+}
+
+.interval-icon {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.interval-icon:hover {
+    opacity: 1;
+}
+
+.plus-interval {
+    margin-top: 0.3rem;
+}
+
+/* -------------------------
+     Calendar View
+  -------------------------- */
+.calendar-view-card {
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* In week view, remove the separate header row and instead add a header row inside the content.
+     This example uses the .week-header-row class below if needed. */
+.week-header-row {
+    display: grid;
+    grid-template-columns: 70px repeat(7, 1fr) 70px;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding: 0.5rem 0;
+    background-color: #f2f2f2;
+}
+
+/* The grid content row for week view */
+.grid-content-row {
+    display: grid;
+    grid-template-columns: 70px repeat(7, 1fr) 70px;
+}
+
+/* Common Grid Classes */
+.common-grid {
+    display: grid;
+    grid-template-columns: 70px 1fr 70px;
+}
+
+.common-grid-week {
+    display: grid;
+    grid-template-columns: 70px repeat(7, 1fr) 70px;
+}
+
+.day-header-cell {
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #333;
+    border-right: 1px solid #eee;
+    padding: 0.5rem 0;
+}
+
+/* Calendar Content */
+.calendar-content {
+    margin-top: 1rem;
+}
+
+/* Hide the vertical scrollbar in the scrollable container */
+.day-week-scrollable {
+    max-height: 800px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.day-week-scrollable::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari and Opera */
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: 70px repeat(7, 1fr) 70px;
+}
+
+.time-labels-col {
+    display: flex;
+    flex-direction: column;
+    border-radius: 6px;
+}
+
+.time-label {
+    min-height: 60px;
+    font-size: 0.85rem;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+}
+
+.calendar-day-col {
+    border: 1px solid #eee;
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.weekend-col {
+    background-color: #f9f9f9;
+}
+
+.calendar-hour-cell {
+    border-bottom: 1px solid #eee;
+    min-height: 60px;
+    position: relative;
+}
+
+.event-title-availability {
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #333;
+}
+
+/* -------------------------
+     Month View
+  -------------------------- */
+.month-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.month-table th,
+.month-table td {
+    border: 1px solid #f0f0f0;
+    padding: 0.5rem;
+    text-align: center;
+    vertical-align: top;
+}
+
+.month-header {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.month-header h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #e70000;
+    margin: 0;
+}
+
+.month-header-row th.month-day-label {
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.empty-cell {
+    background-color: #f8f8f8;
+}
+
+.month-date {
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+    color: #333;
+    display: block;
+}
+
+.month-events {
+    margin-top: 4px;
+}
+
+.month-event {
+    display: none;
+}
+
+.event-indicator {
+    width: 8px;
+    height: 8px;
+    background-color: #e70000;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+
+/* -------------------------
+     Year View
+  -------------------------- */
+.year-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #e70000;
+    margin-bottom: 1.5rem;
+}
+
+.year-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    justify-items: center;
+}
+
+.year-month-block {
+    background-color: #fefefe;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    padding: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 280px;
+}
+
+.year-month-header {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.year-month-table {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.year-month-row {
+    display: flex;
+    gap: 0.3rem;
+    justify-content: center;
+}
+
+.year-month-cell {
+    width: 1.8rem;
+    height: 1.8rem;
+    font-size: 0.85rem;
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.year-month-cell.header-cell {
+    font-weight: bold;
+    color: #333;
+}
+
+.year-month-cell.empty-cell {
+    background-color: #f5f5f5;
+}
+
+.year-month-date {
+    font-weight: normal;
+}
+
+.year-event-indicator {
+    width: 4px;
+    height: 4px;
+    background-color: #e70000;
+    border-radius: 50%;
+    margin-top: 2px;
+    margin-left: 2px;
+    display: inline-block;
+}
+
+.current-day {
+    background-color: #e6f7ff;
+    border: 2px solid #007bff;
+    border-radius: 8px;
+}
+
+/* -------------------------
+     Popup Overlay
+  -------------------------- */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.popup-content {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    width: 300px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.popup-title {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.popup-events-list {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0;
+}
+
+.popup-event-item {
+    margin-bottom: 0.75rem;
+}
+
+.popup-event-time {
+    font-size: 0.9rem;
+    color: #555;
+    margin: 0.2rem 0;
+}
+
+.popup-event-details {
+    margin-top: 0.2rem;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.popup-close-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+.popup-close-btn:hover {
+    background-color: #0056cc;
+}
+
+@media (max-width: 1210px) {
+    .calendar-event-block .event-title {
+        font-size: 0.5rem;
+    }
+
+    .calendar-event-block .event-time {
+        font-size: 0.45rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .calendar-event-block .event-title {
+        font-size: 0.5rem;
+    }
+
+    .calendar-event-block .event-time {
+        font-size: 0.45rem;
+    }
+
+    .year-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+    }
+}

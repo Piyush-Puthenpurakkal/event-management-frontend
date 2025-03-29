@@ -1,0 +1,334 @@
+.booking-page-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: "Inter", sans-serif;
+    color: #333;
+}
+
+.booking-header {
+    margin-bottom: 2rem;
+}
+
+.booking-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 0;
+    color: #333;
+}
+
+.booking-subtitle {
+    margin: 0.3rem 0 0;
+    font-size: 1rem;
+    color: #666;
+}
+
+.booking-container {
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+}
+
+.booking-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.tab-btn {
+    background-color: #f2f2f2;
+    border: none;
+    border-radius: 8px;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.tab-btn:hover {
+    background-color: #e2e2e2;
+}
+
+.tab-btn.active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.booking-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.empty-state {
+    text-align: center;
+    color: #999;
+    font-size: 0.95rem;
+}
+
+.booking-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem;
+    border-bottom: 1px solid #eee;
+}
+
+.booking-row:last-child {
+    border-bottom: none;
+}
+
+.booking-left-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 150px;
+}
+
+.booking-date {
+    font-size: 0.95rem;
+    color: #555;
+    margin: 0;
+    margin-bottom: 0.3rem;
+}
+
+.booking-time {
+    font-size: 0.95rem;
+    color: #007bff;
+    margin: 0;
+}
+
+.booking-center-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+.booking-meeting-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}
+
+.booking-details {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0.2rem 0 0;
+}
+
+.booking-right-col {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.booking-status {
+    background-color: #4CAF50;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.status-accepted {
+    background-color: #e7f9ed;
+    color: #2e8b57;
+}
+
+.status-pending {
+    background-color: #fffbe5;
+    color: #b58900;
+}
+
+.status-rejected {
+    background-color: #ffe6e6;
+    color: #cc0000;
+}
+
+.participants-btn {
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: underline;
+    padding: 0;
+}
+
+.participants-anchor {
+    position: relative;
+    display: inline-block;
+}
+
+.people-icon {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+}
+
+.action-buttons {
+    margin-top: 8px;
+    display: flex;
+    gap: 8px;
+}
+
+.accept-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.reject-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.accept-btn:hover {
+    background-color: #218838;
+}
+
+.reject-btn:hover {
+    background-color: #c82333;
+}
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    z-index: 1001;
+    max-width: 90%;
+    max-height: 90%;
+    overflow-y: auto;
+}
+
+@media only screen and (max-width: 768px) {
+
+    .booking-page-wrapper {
+        padding: 1rem;
+    }
+
+    .booking-header {
+        text-align: center;
+    }
+
+    .booking-title {
+        font-size: 1.5rem;
+    }
+
+    .booking-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .booking-container {
+        padding: 1rem;
+    }
+
+    .booking-tabs {
+        gap: 0.5rem;
+    }
+
+    .tab-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .booking-row {
+        align-items: flex-start;
+    }
+
+    .booking-left-col,
+    .booking-center-col,
+    .booking-right-col {
+        margin-bottom: 0.5rem;
+    }
+
+    .booking-right-col {
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+
+    .booking-date,
+    .booking-time {
+        font-size: 0.85rem;
+    }
+
+    .booking-meeting-title {
+        font-size: 0.9rem;
+    }
+
+    .booking-details {
+        font-size: 0.8rem;
+    }
+
+    .action-buttons {
+        gap: 4px;
+    }
+
+    .participants-btn {
+        font-size: 0.8rem;
+    }
+
+    .accept-btn .btn-label,
+    .reject-btn .btn-label {
+        display: none;
+    }
+
+    .accept-btn,
+    .reject-btn {
+        width: 30px;
+        text-indent: -9999px;
+        white-space: nowrap;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .accept-btn img,
+    .reject-btn img {
+        text-indent: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 20px;
+        height: 20px;
+    }
+}

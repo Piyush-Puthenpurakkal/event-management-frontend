@@ -1,0 +1,485 @@
+.home-container {
+    width: 100%;
+    margin: 5px auto;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    color: #333;
+}
+
+/* 1. Top Bar */
+.home-top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    margin: 1rem auto;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    background-color: #f5f5f5;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.top-bar-logo {
+    height: 40px;
+    width: auto;
+}
+
+.signup-btn {
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    padding: 0.75rem 1.25rem;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+
+.signup-btn:hover {
+    background-color: #0056b3;
+}
+
+/* 2. Hero Section */
+.hero-section {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 3rem 2rem;
+    background-color: #fafafa;
+}
+
+.hero-text {
+    max-width: 50%;
+    margin-right: 2rem;
+    text-align: center;
+}
+
+.hero-text h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.join-btn {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-top: 1.5rem;
+    transition: background-color 0.2s ease;
+}
+
+.join-btn:hover {
+    background-color: #0056b3;
+}
+
+.hero-image {
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-image img {
+    width: 100%;
+    max-width: 800px;
+    border-radius: 10px;
+}
+
+/* 3. Simplified Scheduling Section */
+.simplified-section {
+    text-align: center;
+    padding: 3rem 2rem;
+    background-color: #fff;
+}
+
+.simplified-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.simplified-section p {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1rem;
+    color: #555;
+}
+
+/* 4. Stay Organized Section */
+.organize-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2rem;
+    padding: 3rem 2rem;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+
+.organize-text {
+    box-sizing: border-box;
+}
+
+.organize-text h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.organize-text p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+.organize-text ul {
+    margin: 0;
+    padding-left: 1.2rem;
+    list-style: disc;
+    color: #555;
+    text-align: left;
+}
+
+.organize-text li {
+    margin-bottom: 0.5rem;
+}
+
+.organize-images {
+    flex: 0 0 400px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.calendar-img1 {
+    margin-right: -105px;
+    width: 180px;
+    border-radius: 8px;
+    filter: drop-shadow(8px 8px 12px rgba(0, 0, 0, 0.2));
+    z-index: 1;
+}
+
+.calendar-img2 {
+    width: 220px;
+    border-radius: 8px;
+    filter: drop-shadow(8px 8px 12px rgba(0, 0, 0, 0.2));
+    z-index: 0;
+}
+
+/* 5. Testimonials Section */
+.testimonials-section {
+    background-color: #fff;
+    padding: 3rem 2rem;
+    text-align: center;
+}
+
+.testimonials-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    padding: 2rem;
+    background-color: #fff;
+}
+
+/* LEFT BLOCK: Title + Button stacked vertically */
+.testimonials-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: start;
+    gap: 1rem;
+}
+
+/* The main heading line */
+.testimonials-title {
+    font-size: 2rem;
+    font-weight: 500;
+    color: #000;
+    margin: 0;
+}
+
+/* Make “customer” a different color */
+.blue-text {
+    color: #007bff;
+    /* your brand color for “customer” */
+}
+
+/* The button at bottom-left */
+.read-stories-btn {
+    background-color: #fff;
+    color: #007bff;
+    border: 1px solid #007bff;
+    padding: 0.75rem 1.25rem;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.read-stories-btn:hover {
+    background-color: #0056b3;
+    color: #fff;
+}
+
+/* RIGHT BLOCK: Icon + short descriptive text, top-right aligned */
+.testimonials-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+    max-width: 250px;
+}
+
+/* Optional star icon or asterisk */
+.star-icon {
+    font-size: 1.5rem;
+    color: #007bff;
+}
+
+/* Short descriptive pitch text */
+.short-description {
+    font-size: 1rem;
+    line-height: 1.4;
+    color: #555;
+    margin: 0;
+    text-align: right;
+}
+
+/* Grid for the testimonial cards */
+.testimonial-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Each individual card */
+.testimonial-card {
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: left;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Header row inside each card: avatar + user info */
+.testimonial-header {
+    display: flex;
+}
+
+/* The user’s avatar */
+.testimonial-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 1rem;
+    object-fit: cover;
+}
+
+/* The user’s name and title */
+.testimonial-header h4 {
+    margin: 0 0 0.2rem 0;
+    font-size: 1rem;
+    color: #333;
+}
+
+.testimonial-header p {
+    font-size: 0.85rem;
+    color: #777;
+    margin: 0;
+}
+
+/* Paragraph for the testimonial text */
+.testimonial-card p {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+}
+
+/* 6. Integrations Section */
+.integrations-section {
+    background-color: #fff;
+    padding: 3rem 2rem;
+    text-align: center;
+}
+
+/* Heading */
+.integrations-section h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 2rem;
+}
+
+/* Grid container */
+.integrations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Single item */
+.integration-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    text-align: left;
+}
+
+/* Icon styling */
+.integration-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+/* Title + description */
+.integration-item h4 {
+    font-size: 1rem;
+    margin: 0 0 0.3rem 0;
+    color: #333;
+}
+
+.integration-item p {
+    font-size: 0.9rem;
+    color: #555;
+    margin: 0;
+}
+
+/* 7. Footer */
+.home-footer {
+    background-color: #fff;
+    padding: 40px 5%;
+    margin-top: 40px;
+}
+
+/* Container to center + group footer content */
+.footer-container {
+    max-width: 1200px;
+    padding: 40px 5%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Top row: Buttons on the left, link columns on the right */
+.footer-top-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+/* 1. Buttons (Log in / Sign up free) */
+.footer-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 20px;
+}
+
+.footer-login-btn,
+.footer-signup-btn {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px;
+    text-align: center;
+    border: none;
+}
+
+.footer-login-btn {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+.footer-signup-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: 2px solid #007bff;
+}
+
+.footer-login-btn:hover {
+    background-color: #e2e2e2;
+}
+
+.footer-signup-btn:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/* 2. Footer Links Row (3 columns of links) */
+.footer-links-row {
+    display: flex;
+    gap: 100px;
+    flex-wrap: wrap;
+    margin-right: 100px;
+}
+
+.footer-links-row ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links-row li {
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    color: #333;
+    cursor: pointer;
+}
+
+.footer-links-row li:hover {
+    text-decoration: underline;
+}
+
+/* Bottom row: acknowledgment text + socials */
+.footer-bottom-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Acknowledgment text (left) */
+.footer-acknowledgment {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.5;
+    max-width: 60%;
+    margin: 0;
+}
+
+/* Social icons (right) */
+.footer-socials {
+    display: flex;
+    gap: 30px;
+}
+
+.social-icon {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+.social-icon:hover {
+    opacity: 0.8;
+}
