@@ -1,10 +1,8 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
+import AxiosInstance from "../api/AxiosInstance";
 import "../styles/auth.css";
-
-import logo from "../assets/logo.png";
-import illustrationImage from "../assets/illustration-image.png";
 
 // Category icons
 import salesIcon from "../assets/auth/sales.png";
@@ -19,8 +17,12 @@ import marketingIcon from "../assets/auth/marketing.png";
 const AboutYourself = () => {
   const { user, login } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  // Local state for username and selected category, plus error/loading state
   const [username, setUsername] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const categories = [
     { value: "Sales", label: "Sales", icon: salesIcon },
@@ -41,21 +43,38 @@ const AboutYourself = () => {
     setSelectedCategory(catValue);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const updatedUser = {
-      ...user,
-      username: username.trim(),
-      category: selectedCategory,
-    };
-    login(updatedUser);
-    navigate("/dashboard");
+    setError("");
+    if (!username.trim() || !selectedCategory) {
+      setError("Please enter a username and select a category.");
+      return;
+    }
+    setLoading(true);
+    try {
+      const updateData = {
+        username: username.trim(),
+        category: selectedCategory,
+      };
+      // Update the user profile on the backend
+      const res = await AxiosInstance.put("/users/profile", updateData);
+      // Update the AuthContext with the new user data
+      login(res.data);
+      // Redirect to dashboard after profile update
+      navigate("/dashboard");
+    } catch (err) {
+      console.error("Error updating profile:", err);
+      setError("Failed to update profile. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="auth-container">
+      {/* LEFT COLUMN */}
       <div className="auth-left">
-        <img src={logo} alt="CNNCT Logo" className="auth-logo" />
+        <img src="/logo.png" alt="CNNCT Logo" className="auth-logo" />
         <div className="auth-box">
           <h2>Your Preferences</h2>
           <form className="auth-form" onSubmit={handleSubmit}>
@@ -109,14 +128,18 @@ const AboutYourself = () => {
               </div>
             </div>
 
-            <button type="submit">Continue</button>
+            {error && <p style={{ color: "red" }}>{error}</p>}
+            <button type="submit" disabled={loading}>
+              {loading ? "Saving..." : "Continue"}
+            </button>
           </form>
         </div>
       </div>
 
+      {/* RIGHT COLUMN */}
       <div className="auth-right">
         <img
-          src={illustrationImage}
+          src="/illustration-image.png"
           alt="Preferences Illustration"
           className="auth-illustration"
         />
