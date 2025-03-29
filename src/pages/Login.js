@@ -7,6 +7,7 @@ import "../styles/auth.css";
 import logo from "../assets/logo.png";
 import illustrationImage from "../assets/illustration-image.png";
 
+// Eye icons for show/hide password
 import eyeOpenIcon from "../assets/icons/eyeOpen.png";
 import eyeClosedIcon from "../assets/icons/eyeClosed.png";
 
@@ -36,13 +37,18 @@ const Login = () => {
     const { email, password } = credentials;
     if (email.trim() && password.trim()) {
       try {
+        // Call backend login endpoint
         const response = await AxiosInstance.post("/auth/login", {
           email,
           password,
         });
+        // Assuming the response contains token and user data
         const { token, user } = response.data;
+        console.log("User returned from login:", user); // Debug log
         localStorage.setItem("token", token);
         login(user);
+
+        // Redirect to AboutYourself if username is not set; otherwise, go to dashboard.
         if (!user.username || user.username.trim() === "") {
           navigate("/about-yourself");
         } else {
@@ -57,6 +63,7 @@ const Login = () => {
     }
   };
 
+  // Disable button if either field is empty or just spaces
   const isDisabled = !credentials.email.trim() || !credentials.password.trim();
 
   return (
