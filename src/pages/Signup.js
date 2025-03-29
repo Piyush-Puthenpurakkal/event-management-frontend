@@ -23,12 +23,6 @@ const Signup = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const validatePassword = (password) => {
-    const regex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,}$/;
-    return regex.test(password);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -50,20 +44,15 @@ const Signup = () => {
       return;
     }
 
-    if (!validatePassword(password.trim())) {
-      setError(
-        "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character."
-      );
-      return;
-    }
-
     try {
+      // Call backend register endpoint
       const response = await AxiosInstance.post("/auth/register", {
         email,
         password,
         firstName,
         lastName,
       });
+      // Assuming the response contains token and user data
       const { token, user } = response.data;
       localStorage.setItem("token", token);
       login(user);
@@ -163,7 +152,22 @@ const Signup = () => {
               />
               <label htmlFor="terms" style={{ lineHeight: "1.4" }}>
                 By creating an account, I agree to the{" "}
-                <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>.
+                <a
+                  href="https://example.com/terms-of-use"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Terms of Use
+                </a>{" "}
+                and{" "}
+                <a
+                  href="https://example.com/privacy-policy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Privacy Policy
+                </a>
+                .
               </label>
             </div>
 
