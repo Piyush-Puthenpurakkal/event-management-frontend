@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import AxiosInstance from "../api/AxiosInstance";
@@ -15,7 +15,7 @@ import recruitingIcon from "../assets/auth/recruiting.png";
 import marketingIcon from "../assets/auth/marketing.png";
 
 const AboutYourself = () => {
-  const { user, login } = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
   // Local state for username and selected category, plus error/loading state
