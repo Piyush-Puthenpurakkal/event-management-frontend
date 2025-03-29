@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const AxiosInstance = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: "https://event-management-backend-h5tn.onrender.com/api",
 });
 
 AxiosInstance.interceptors.request.use(
