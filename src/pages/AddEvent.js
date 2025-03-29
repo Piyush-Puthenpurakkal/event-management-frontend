@@ -54,14 +54,13 @@ const AddEvent = () => {
     editingEvent ? editingEvent.meetingLink : ""
   );
 
-  // IMPORTANT: Instead of inviteEmails, we now use participants.
+  // Update: Use email IDs instead of MongoDB IDs from participants
   const [inviteeIds, setInviteeIds] = useState(() => {
     if (editingEvent && Array.isArray(editingEvent.participants)) {
-      // Map over the participants array. Adjust this mapping if your participant object is structured differently.
       return editingEvent.participants
         .map((p) =>
-          typeof p.user === "object" && p.user._id
-            ? p.user._id.toString()
+          typeof p.user === "object" && p.user.email
+            ? p.user.email
             : p.user.toString()
         )
         .join(", ");
@@ -92,11 +91,11 @@ const AddEvent = () => {
 
     const endTime = dayjs(startTime).add(durationMinutes, "minute").toDate();
 
-    // Convert comma separated invitee IDs into an array of strings
+    // Convert comma separated invitee emails into an array of strings
     const inviteeArray = inviteeIds
       .split(",")
-      .map((id) => id.trim())
-      .filter((id) => id);
+      .map((email) => email.trim())
+      .filter((email) => email);
 
     const eventData = {
       title: topic,
@@ -307,7 +306,7 @@ const AddEvent = () => {
         <h2>Meeting Link & Invite Participants</h2>
         <p className="link-email-subtitle">
           Enter your meeting link (Google Meet, Zoom, etc.) and invite
-          participants by entering their user IDs separated by commas.
+          participants by entering their email IDs separated by commas.
         </p>
         <div className="link-email-section">
           <label>Meeting Link</label>
@@ -317,10 +316,10 @@ const AddEvent = () => {
             value={link}
             onChange={(e) => setLink(e.target.value)}
           />
-          <label>Invite Participants (User IDs)</label>
+          <label>Invite Participants (Email IDs)</label>
           <input
             type="text"
-            placeholder="Enter user IDs separated by commas"
+            placeholder="Enter email IDs separated by commas"
             value={inviteeIds}
             onChange={(e) => setInviteeIds(e.target.value)}
           />
