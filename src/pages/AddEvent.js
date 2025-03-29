@@ -43,7 +43,6 @@ const AddEvent = () => {
     editingEvent ? dayjs(editingEvent.startTime).format("HH:mm") : ""
   );
   const [duration, setDuration] = useState("1 hour");
-
   const [bannerName, setBannerName] = useState(
     editingEvent ? editingEvent.bannerName : "Meeting Title"
   );
@@ -51,15 +50,24 @@ const AddEvent = () => {
   const [bannerColor, setBannerColor] = useState(
     editingEvent ? editingEvent.bannerColor : "#000000"
   );
-
   const [link, setLink] = useState(
     editingEvent ? editingEvent.meetingLink : ""
   );
-  const [inviteeIds, setInviteeIds] = useState(
-    editingEvent && Array.isArray(editingEvent.inviteEmails)
-      ? editingEvent.inviteEmails.join(", ")
-      : ""
-  );
+
+  // IMPORTANT: Instead of inviteEmails, we now use participants.
+  const [inviteeIds, setInviteeIds] = useState(() => {
+    if (editingEvent && Array.isArray(editingEvent.participants)) {
+      // Map over the participants array. Adjust this mapping if your participant object is structured differently.
+      return editingEvent.participants
+        .map((p) =>
+          typeof p.user === "object" && p.user._id
+            ? p.user._id.toString()
+            : p.user.toString()
+        )
+        .join(", ");
+    }
+    return "";
+  });
 
   const [conflictError, setConflictError] = useState(null);
 
@@ -84,6 +92,7 @@ const AddEvent = () => {
 
     const endTime = dayjs(startTime).add(durationMinutes, "minute").toDate();
 
+    // Convert comma separated invitee IDs into an array of strings
     const inviteeArray = inviteeIds
       .split(",")
       .map((id) => id.trim())
