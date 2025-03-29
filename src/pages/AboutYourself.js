@@ -59,7 +59,7 @@ const AboutYourself = () => {
         category: selectedCategory,
       };
       const res = await AxiosInstance.put("/users/profile", updateData);
-      login(res.data);
+      login(res.data.user);
       navigate("/dashboard");
     } catch (err) {
       console.error("Error updating profile:", err);
