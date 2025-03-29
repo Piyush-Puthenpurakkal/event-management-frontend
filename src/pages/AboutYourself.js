@@ -4,6 +4,9 @@ import AuthContext from "../context/AuthContext";
 import AxiosInstance from "../api/AxiosInstance";
 import "../styles/auth.css";
 
+import logo from "../assets/logo.png";
+import illustrationImage from "../assets/illustration-image.png";
+
 // Category icons
 import salesIcon from "../assets/auth/sales.png";
 import financeIcon from "../assets/auth/finance.png";
@@ -18,7 +21,6 @@ const AboutYourself = () => {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  // Local state for username and selected category, plus error/loading state
   const [username, setUsername] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [error, setError] = useState("");
@@ -56,11 +58,8 @@ const AboutYourself = () => {
         username: username.trim(),
         category: selectedCategory,
       };
-      // Update the user profile on the backend
       const res = await AxiosInstance.put("/users/profile", updateData);
-      // Update the AuthContext with the new user data
       login(res.data);
-      // Redirect to dashboard after profile update
       navigate("/dashboard");
     } catch (err) {
       console.error("Error updating profile:", err);
@@ -74,7 +73,7 @@ const AboutYourself = () => {
     <div className="auth-container">
       {/* LEFT COLUMN */}
       <div className="auth-left">
-        <img src="/logo.png" alt="CNNCT Logo" className="auth-logo" />
+        <img src={logo} alt="CNNCT Logo" className="auth-logo" />
         <div className="auth-box">
           <h2>Your Preferences</h2>
           <form className="auth-form" onSubmit={handleSubmit}>
@@ -139,7 +138,7 @@ const AboutYourself = () => {
       {/* RIGHT COLUMN */}
       <div className="auth-right">
         <img
-          src="/illustration-image.png"
+          src={illustrationImage}
           alt="Preferences Illustration"
           className="auth-illustration"
         />
