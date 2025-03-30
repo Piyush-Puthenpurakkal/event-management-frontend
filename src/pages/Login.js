@@ -6,15 +6,12 @@ import "../styles/auth.css";
 
 import logo from "../assets/logo.png";
 import illustrationImage from "../assets/illustration-image.png";
-
-// Eye icons for show/hide password
 import eyeOpenIcon from "../assets/icons/eyeOpen.png";
 import eyeClosedIcon from "../assets/icons/eyeClosed.png";
 
 const Login = () => {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
-
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
@@ -33,22 +30,16 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-
     const { email, password } = credentials;
     if (email.trim() && password.trim()) {
       try {
-        // Call backend login endpoint
         const response = await AxiosInstance.post("/auth/login", {
           email,
           password,
         });
-        // Assuming the response contains token and user data
         const { token, user } = response.data;
-        console.log("User returned from login:", user); // Debug log
         localStorage.setItem("token", token);
         login(user);
-
-        // Redirect to AboutYourself if username is not set; otherwise, go to dashboard.
         if (!user.username || user.username.trim() === "") {
           navigate("/about-yourself");
         } else {
@@ -63,19 +54,15 @@ const Login = () => {
     }
   };
 
-  // Disable button if either field is empty or just spaces
   const isDisabled = !credentials.email.trim() || !credentials.password.trim();
 
   return (
     <div className="auth-container">
-      {/* LEFT COLUMN */}
       <div className="auth-left">
         <img src={logo} alt="CNNCT Logo" className="auth-logo" />
-
         <div className="auth-box">
           <h1>Sign in</h1>
           <form className="auth-form" onSubmit={handleSubmit}>
-            {/* Email */}
             <input
               type="email"
               name="email"
@@ -83,8 +70,6 @@ const Login = () => {
               value={credentials.email}
               onChange={handleChange}
             />
-
-            {/* Password with eye icon for hide/show */}
             <div className="password-field">
               <input
                 type={showPassword ? "text" : "password"}
@@ -100,21 +85,17 @@ const Login = () => {
                 onClick={togglePasswordVisibility}
               />
             </div>
-
             {error && <p style={{ color: "red" }}>{error}</p>}
-
             <button type="submit" disabled={isDisabled}>
               Log in
             </button>
           </form>
-
           <div className="auth-links" style={{ textAlign: "center" }}>
             <p>
               Don’t have an account? <Link to="/signup">Sign up</Link>
             </p>
           </div>
         </div>
-
         <p className="auth-terms">
           This site is protected by reCAPTCHA and the{" "}
           <a
@@ -135,8 +116,6 @@ const Login = () => {
           apply.
         </p>
       </div>
-
-      {/* RIGHT COLUMN */}
       <div className="auth-right">
         <img
           src={illustrationImage}

@@ -20,35 +20,22 @@ const Sidebar = () => {
   const navigate = useNavigate();
   const { user, logout } = useContext(AuthContext);
   const [showLogout, setShowLogout] = useState(false);
-
-  // Track mobile state (width <768px)
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-  // For mobile: header (top) and bottom nav (sidebar) visibility
   const [showMobileHeader, setShowMobileHeader] = useState(true);
   const [showMobileNav, setShowMobileNav] = useState(true);
-
   const userSectionRef = useRef(null);
 
-  // Update mobile state on resize
   useEffect(() => {
     const handleResize = () => {
       const mobile = window.innerWidth < 768;
       setIsMobile(mobile);
-      if (!mobile) {
-        // When desktop, hide mobile elements immediately.
-        setShowMobileHeader(false);
-        setShowMobileNav(false);
-      } else {
-        // Reset for mobile.
-        setShowMobileHeader(true);
-        setShowMobileNav(true);
-      }
+      setShowMobileHeader(mobile);
+      setShowMobileNav(mobile);
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Mobile scroll behavior – only in mobile view
   useEffect(() => {
     if (isMobile) {
       const handleScroll = () => {
@@ -56,36 +43,36 @@ const Sidebar = () => {
           window.pageYOffset || document.documentElement.scrollTop;
         const windowHeight = window.innerHeight;
         const docHeight = document.documentElement.scrollHeight;
-        // When near top (within 100px), show header only, hide bottom nav.
         if (scrollY < 100) {
           setShowMobileHeader(true);
           setShowMobileNav(false);
-        }
-        // When near bottom (within 100px of bottom), hide header, show bottom nav.
-        else if (docHeight - (scrollY + windowHeight) < 100) {
+        } else if (docHeight - (scrollY + windowHeight) < 100) {
           setShowMobileHeader(false);
           setShowMobileNav(true);
-        }
-        // In between, show both.
-        else {
+        } else {
           setShowMobileHeader(true);
           setShowMobileNav(true);
         }
       };
       window.addEventListener("scroll", handleScroll, { passive: true });
-      // Run initial check
       handleScroll();
       return () => window.removeEventListener("scroll", handleScroll);
     }
   }, [isMobile]);
 
-  const handleUserClick = () => {
-    setShowLogout((prev) => !prev);
-  };
+  const handleUserClick = () => setShowLogout((prev) => !prev);
 
-  const handleLogout = () => {
+  const handleLogout = (e) => {
+    e.stopPropagation();
+
     logout();
-    navigate("/");
+    setShowLogout(false);
+
+    setTimeout(() => {
+      console.log("Navigating to home...");
+      navigate("/", { replace: true });
+      window.location.reload();
+    }, 100);
   };
 
   useEffect(() => {
@@ -108,7 +95,6 @@ const Sidebar = () => {
 
   return (
     <>
-      {/* Desktop Sidebar – visible only on desktop */}
       <aside className="sidebar-desktop">
         <div className="sidebar-logo">
           <img src={logo} alt="CNNCT" onClick={() => navigate("/dashboard")} />
@@ -207,7 +193,6 @@ const Sidebar = () => {
         </div>
       </aside>
 
-      {/* Mobile Header and Bottom Navigation – rendered only on mobile */}
       {isMobile && (
         <>
           <header
@@ -231,7 +216,7 @@ const Sidebar = () => {
               />
             </div>
             {showLogout && (
-              <div className="mobile-logout-popup" onClick={handleLogout}>
+              <div className="mobile-logout-popup" onMouseDown={handleLogout}>
                 <img
                   src={logoutPopIcon}
                   alt="Logout"
