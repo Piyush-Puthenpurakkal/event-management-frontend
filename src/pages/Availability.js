@@ -68,14 +68,24 @@ export default function Availability() {
     mergedRef.current = true;
   }, [days, events]);
 
+  // UPDATED: Only merge events that fall within the current week
   function mergeEventIntervalsIntoDays(originalDays, allEvents) {
     const newDays = JSON.parse(JSON.stringify(originalDays));
+    const currentDate = dayjs();
+    const startOfWeek = currentDate.startOf("week");
+    const endOfWeek = currentDate.endOf("week");
     newDays.forEach((dayObj) => {
       const dayIndex = getDayIndexFromName(dayObj.day);
       if (dayIndex < 0) return;
+      // Filter events that occur within this week and match the day index
       const dayEvents = allEvents.filter((ev) => {
-        const evDayIndex = dayjs(ev.startTime).day();
-        return evDayIndex === dayIndex;
+        const evDate = dayjs(ev.startTime);
+        // Include events from startOfWeek up to endOfWeek (inclusive)
+        return (
+          evDate.isAfter(startOfWeek.subtract(1, "millisecond")) &&
+          evDate.isBefore(endOfWeek.add(1, "millisecond")) &&
+          evDate.day() === dayIndex
+        );
       });
       dayEvents.forEach((ev) => {
         const startStr = dayjs(ev.startTime).format("HH:mm");
@@ -207,7 +217,6 @@ export default function Availability() {
         </p>
       </div>
 
-      {/* The switch row is now kept outside the white box */}
       <div className="switch-row" style={{ marginTop: "1rem" }}>
         <input
           type="checkbox"
@@ -236,7 +245,6 @@ export default function Availability() {
         </label>
       </div>
 
-      {/* The white box now contains the filter selects */}
       <div className="availability-white-box">
         <div className="availability-top-row">
           <div className="left-filters">
@@ -267,7 +275,6 @@ export default function Availability() {
           </div>
         </div>
 
-        {/* Depending on activeTab, show list view or calendar view */}
         {activeTab === "availability" ? (
           <AvailabilityListView
             days={days}
