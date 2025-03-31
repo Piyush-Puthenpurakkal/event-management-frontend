@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, NavLink } from "react-router-dom";
 import dayjs from "dayjs";
 import AxiosInstance from "../api/AxiosInstance";
 import { ToastContext } from "../context/ToastContext";
@@ -10,13 +10,13 @@ import pencilIcon from "../assets/events/edit.png";
 import copyIcon from "../assets/events/copy.png";
 import deleteIcon from "../assets/events/delete.png";
 import conflictIcon from "../assets/events/conflict.png";
+import plusIcon from "../assets/sidebar/plus.png";
 
 const Events = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { addToast } = useContext(ToastContext);
   const { user } = useContext(AuthContext);
-
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -116,9 +116,14 @@ const Events = () => {
             Create events to share for people to book on your calendar.
           </p>
         </div>
-        <button className="add-new-event-btn" onClick={handleAddEvent}>
-          + Add New Event
-        </button>
+        <NavLink
+          to="/add-event"
+          className="add-new-event-btn"
+          onClick={handleAddEvent}
+        >
+          <img src={plusIcon} alt="+" className="plus-icon" />
+          Add New Event
+        </NavLink>
       </div>
 
       <div className="events-card-row">

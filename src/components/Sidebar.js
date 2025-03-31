@@ -178,7 +178,7 @@ const Sidebar = () => {
           {({ isActive }) => (
             <>
               <img
-                src={isActive || createBtnHovered ? plusIcon : plusIconActive}
+                src={isActive || createBtnHovered ? plusIconActive : plusIcon}
                 alt="+"
                 className="plus-icon"
               />

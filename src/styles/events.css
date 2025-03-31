@@ -28,19 +28,25 @@
 }
 
 .add-new-event-btn {
-    border: none;
-    background-color: #007bff;
-    color: #fff;
+    display: flex;
+    white-space: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border: #007bff 1px solid;
+    border-radius: 20px;
+    background-color: transparent;
+    color: #007bff;
     font-weight: 600;
     font-size: 0.95rem;
     padding: 0.6rem 1.2rem;
-    border-radius: 8px;
+    text-decoration: none;
     cursor: pointer;
     transition: background-color 0.2s;
 }
 
 .add-new-event-btn:hover {
-    background-color: #0056b3;
+    opacity: 0.8;
 }
 
 .events-card-row {
