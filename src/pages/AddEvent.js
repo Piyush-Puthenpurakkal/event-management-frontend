@@ -262,18 +262,21 @@ const AddEvent = () => {
         <div className="banner-color-section">
           <label className="color-label">Custom Background Color</label>
           <div className="color-picker-row">
-            <div
-              className="circle orange-circle"
-              onClick={() => setBannerColor("#ff6b35")}
-            ></div>
-            <div
-              className="circle black-circle"
-              onClick={() => setBannerColor("#000000")}
-            ></div>
-            <div
-              className="circle white-circle"
-              onClick={() => setBannerColor("#ffffff")}
-            ></div>
+            <div className="color-picker">
+              <div
+                className="circle orange-circle"
+                onClick={() => setBannerColor("#ff6b35")}
+              ></div>
+              <div
+                className="circle black-circle"
+                onClick={() => setBannerColor("#000000")}
+              ></div>
+              <div
+                className="circle white-circle"
+                onClick={() => setBannerColor("#ffffff")}
+              ></div>
+            </div>
+
             <div className="color-input-wrap">
               <div
                 className="color-preview"

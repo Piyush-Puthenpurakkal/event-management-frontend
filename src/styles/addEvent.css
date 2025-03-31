@@ -91,9 +91,9 @@
 
 /* The big rectangle for the banner background */
 .banner-rectangle {
-    width: 100%;
+    width: 50%;
     min-height: 180px;
-    border-radius: 16px;
+    border-radius: 10px;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -155,8 +155,15 @@
 
 .color-picker-row {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     gap: 1rem;
+}
+
+.color-picker {
+    display: flex;
+    flex-direction: row;
+    gap: 0.7rem
 }
 
 .circle {
