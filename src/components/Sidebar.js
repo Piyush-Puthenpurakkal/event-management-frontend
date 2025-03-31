@@ -14,6 +14,7 @@ import settingsIcon from "../assets/sidebar/settings.png";
 import settingsIconActive from "../assets/sidebar/settings-active.png";
 import userAvatar from "../assets/userAvatar.png";
 import plusIcon from "../assets/sidebar/plus.png";
+import plusIconActive from "../assets/sidebar/plus-active.png";
 import logoutPopIcon from "../assets/sidebar/logout-pop.png";
 
 const Sidebar = () => {
@@ -23,6 +24,7 @@ const Sidebar = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [showMobileHeader, setShowMobileHeader] = useState(true);
   const [showMobileNav, setShowMobileNav] = useState(true);
+  const [createBtnHovered, setCreateBtnHovered] = useState(false);
   const userSectionRef = useRef(null);
 
   useEffect(() => {
@@ -64,10 +66,8 @@ const Sidebar = () => {
 
   const handleLogout = (e) => {
     e.stopPropagation();
-
     logout();
     setShowLogout(false);
-
     setTimeout(() => {
       console.log("Navigating to home...");
       navigate("/", { replace: true });
@@ -169,10 +169,23 @@ const Sidebar = () => {
             )}
           </NavLink>
         </nav>
-        <button className="create-btn" onClick={() => navigate("/add-event")}>
-          <img src={plusIcon} alt="+" className="plus-icon" />
-          <span>Create</span>
-        </button>
+        <NavLink
+          to="/add-event"
+          className={({ isActive }) => `create-btn ${isActive ? "active" : ""}`}
+          onMouseEnter={() => setCreateBtnHovered(true)}
+          onMouseLeave={() => setCreateBtnHovered(false)}
+        >
+          {({ isActive }) => (
+            <>
+              <img
+                src={isActive || createBtnHovered ? plusIcon : plusIconActive}
+                alt="+"
+                className="plus-icon"
+              />
+              <span>Create</span>
+            </>
+          )}
+        </NavLink>
         <div
           className="sidebar-user"
           ref={userSectionRef}
