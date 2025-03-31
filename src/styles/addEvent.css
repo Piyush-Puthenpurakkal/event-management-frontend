@@ -58,6 +58,22 @@
     flex: 1;
 }
 
+.date-time {
+    gap: 1rem;
+}
+
+.date-time-label {
+    margin-right: 10px;
+}
+
+.date-time input {
+    margin-right: 10px;
+}
+
+.set-duration label {
+    margin-right: 10px;
+}
+
 /* BANNER SECTION */
 .banner-card {
     background-color: #fff;

@@ -1,9 +1,8 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import dayjs from "dayjs";
 import AxiosInstance from "../api/AxiosInstance";
 import { ToastContext } from "../context/ToastContext";
-import AuthContext from "../context/AuthContext";
 import "../styles/addEvent.css";
 
 import userAvatar from "../assets/userAvatar.png";
@@ -14,16 +13,8 @@ const AddEvent = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { addToast } = useContext(ToastContext);
-  const { user } = useContext(AuthContext);
 
   const editingEvent = location.state?.event;
-
-  useEffect(() => {
-    if (editingEvent && editingEvent.user.toString() !== user._id.toString()) {
-      addToast("error", "You are not authorized to edit this event.");
-      navigate("/events");
-    }
-  }, [editingEvent, user, addToast, navigate]);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [topic, setTopic] = useState(editingEvent ? editingEvent.title : "");
@@ -212,23 +203,20 @@ const AddEvent = () => {
           />
         </div>
         <div className="form-row half-row">
-          <div>
-            <label>Date</label>
+          <div className="date-time">
+            <label className="date-time-label">Date and time</label>
             <input
               type="date"
               value={date}
               onChange={(e) => setDate(e.target.value)}
             />
-          </div>
-          <div>
-            <label>Time</label>
             <input
               type="time"
               value={time}
               onChange={(e) => setTime(e.target.value)}
             />
           </div>
-          <div>
+          <div className="set-duration">
             <label>Set duration</label>
             <select
               value={duration}
@@ -304,10 +292,6 @@ const AddEvent = () => {
 
       <div className="link-email-card">
         <h2>Meeting Link & Invite Participants</h2>
-        <p className="link-email-subtitle">
-          Enter your meeting link (Google Meet, Zoom, etc.) and invite
-          participants by entering their email IDs separated by commas.
-        </p>
         <div className="link-email-section">
           <label>Meeting Link</label>
           <input
