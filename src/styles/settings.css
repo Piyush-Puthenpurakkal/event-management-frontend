@@ -75,6 +75,10 @@
         padding: 1rem;
     }
 
+    .settings-card {
+        width: 100%;
+    }
+
     .settings-form input {
         width: 100%;
     }
