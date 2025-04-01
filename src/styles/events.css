@@ -212,3 +212,31 @@
     height: 20px;
     margin-right: 8px;
 }
+
+.conflict-icon-wrapper {
+    position: absolute;
+    top: 20px;
+    left: 15px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.conflict-icon-wrapper .conflict-icon {
+    width: 15px;
+    height: 15px;
+}
+
+.conflict-tooltip {
+    position: absolute;
+    top: 0px;
+    left: 20px;
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+    padding: 6px 8px;
+    border-radius: 10px;
+    white-space: nowrap;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 3;
+}

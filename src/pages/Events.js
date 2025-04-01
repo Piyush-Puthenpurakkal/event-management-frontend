@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import { useNavigate, useLocation, NavLink } from "react-router-dom";
 import dayjs from "dayjs";
 import AxiosInstance from "../api/AxiosInstance";
@@ -12,6 +12,39 @@ import deleteIcon from "../assets/events/delete.png";
 import conflictIcon from "../assets/events/conflict.png";
 import plusIcon from "../assets/sidebar/plus.png";
 
+const ConflictIcon = () => {
+  const [tooltipVisible, setTooltipVisible] = useState(false);
+  const iconRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (iconRef.current && !iconRef.current.contains(e.target)) {
+        setTooltipVisible(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const handleConflictClick = (e) => {
+    e.stopPropagation();
+    setTooltipVisible((prev) => !prev);
+  };
+
+  return (
+    <div
+      className="conflict-icon-wrapper"
+      onClick={handleConflictClick}
+      ref={iconRef}
+    >
+      <img src={conflictIcon} alt="Conflict" className="conflict-icon" />
+      {tooltipVisible && (
+        <div className="conflict-tooltip">Conflict of timing</div>
+      )}
+    </div>
+  );
+};
+
 const Events = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -22,6 +55,23 @@ const Events = () => {
   const [error, setError] = useState(null);
   const [conflictError, setConflictError] = useState(null);
 
+  const checkConflicts = (eventList) => {
+    const updated = eventList.map((ev) => ({ ...ev, hasConflict: false }));
+    for (let i = 0; i < updated.length; i++) {
+      for (let j = i + 1; j < updated.length; j++) {
+        const startI = new Date(updated[i].startTime);
+        const endI = new Date(updated[i].endTime);
+        const startJ = new Date(updated[j].startTime);
+        const endJ = new Date(updated[j].endTime);
+        if (startI < endJ && endI > startJ) {
+          updated[i].hasConflict = true;
+          updated[j].hasConflict = true;
+        }
+      }
+    }
+    return updated;
+  };
+
   useEffect(() => {
     if (location.state?.toast) {
       const { type, message } = location.state.toast;
@@ -31,7 +81,9 @@ const Events = () => {
     const fetchEvents = async () => {
       try {
         const response = await AxiosInstance.get("/events");
-        setEvents(response.data);
+        // Process events to add conflict information
+        const processedEvents = checkConflicts(response.data);
+        setEvents(processedEvents);
       } catch (err) {
         console.error("Error fetching events:", err);
         addToast("error", "Failed to load events.");
@@ -108,7 +160,6 @@ const Events = () => {
           <span>{conflictError}</span>
         </div>
       )}
-
       <div className="events-header-row">
         <div>
           <h1 className="events-page-title">Event Types</h1>
@@ -154,6 +205,7 @@ const Events = () => {
                   className="event-color-bar"
                   style={{ backgroundColor: eventColor }}
                 ></div>
+                {ev.hasConflict && <ConflictIcon />}
                 <div className="event-header-row">
                   <h2 className="event-title">{ev.title}</h2>
                   {isHost && (
