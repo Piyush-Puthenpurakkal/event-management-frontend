@@ -171,7 +171,7 @@ const AddEvent = () => {
           </label>
           <input
             type="text"
-            placeholder="Set a concise topic"
+            placeholder="Set a concise conference topic before it starts"
             value={topic}
             onChange={(e) => setTopic(e.target.value)}
           />
@@ -241,7 +241,7 @@ const AddEvent = () => {
       </div>
 
       <div className="banner-card">
-        <h2>{editingEvent ? "Edit Event" : "Add Event"}</h2>
+        <h2>{editingEvent ? "Edit Banner" : "Banner"}</h2>
         <div
           className="banner-rectangle"
           style={{ backgroundColor: bannerColor }}
@@ -277,12 +277,12 @@ const AddEvent = () => {
                 onClick={() => setBannerColor("#ff6b35")}
               ></div>
               <div
-                className="circle black-circle"
-                onClick={() => setBannerColor("#000000")}
-              ></div>
-              <div
                 className="circle white-circle"
                 onClick={() => setBannerColor("#ffffff")}
+              ></div>
+              <div
+                className="circle black-circle"
+                onClick={() => setBannerColor("#000000")}
               ></div>
             </div>
 
@@ -303,22 +303,29 @@ const AddEvent = () => {
       </div>
 
       <div className="link-email-card">
-        <h2>Meeting Link & Invite Participants</h2>
         <div className="link-email-section">
-          <label>Meeting Link</label>
-          <input
-            type="text"
-            placeholder="Enter meeting URL"
-            value={link}
-            onChange={(e) => setLink(e.target.value)}
-          />
-          <label>Invite Participants (Email IDs)</label>
-          <input
-            type="text"
-            placeholder="Enter email IDs separated by commas"
-            value={inviteeIds}
-            onChange={(e) => setInviteeIds(e.target.value)}
-          />
+          <div className="link-input-wrap">
+            <label>
+              Add Link <span>*</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Enter URL here"
+              value={link}
+              onChange={(e) => setLink(e.target.value)}
+            />
+          </div>
+          <div className="email-input-wrap">
+            <label>
+              Add Emails <span>*</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Add member Emails (comma separated)"
+              value={inviteeIds}
+              onChange={(e) => setInviteeIds(e.target.value)}
+            />
+          </div>
         </div>
       </div>
 

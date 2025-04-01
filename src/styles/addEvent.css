@@ -220,6 +220,20 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+.link-input-wrap {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.email-input-wrap {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 .link-email-card h2 {
     margin-top: 0;
     margin-bottom: 0.5rem;
@@ -247,6 +261,7 @@
 
 .link-email-section input {
     padding: 0.75rem;
+    width: 600px;
     border-radius: 8px;
     border: 1px solid #ccc;
     font-size: 1rem;
