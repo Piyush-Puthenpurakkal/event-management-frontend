@@ -177,16 +177,20 @@ const AddEvent = () => {
           />
         </div>
         <div className="form-row">
-          <label>Password (optional)</label>
+          <label>
+            Password <span> ‎ ‎ ‎ ‎ ‎ </span>
+          </label>
           <input
             type="password"
-            placeholder="Optional password"
+            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
         <div className="form-row">
-          <label>Host name</label>
+          <label>
+            Host name <span>*</span>
+          </label>
           <input
             type="text"
             value={hostName}
@@ -202,23 +206,28 @@ const AddEvent = () => {
             onChange={(e) => setDescription(e.target.value)}
           />
         </div>
-        <div className="form-row half-row">
-          <div className="date-time">
-            <label className="date-time-label">Date and time</label>
+        <div className="form-row">
+          <label>Date and time</label>
+          <div className="date-time-row">
             <input
+              className="date-input"
               type="date"
               value={date}
               onChange={(e) => setDate(e.target.value)}
             />
             <input
+              className="time-input"
               type="time"
               value={time}
               onChange={(e) => setTime(e.target.value)}
             />
           </div>
-          <div className="set-duration">
-            <label>Set duration</label>
+        </div>
+        <div className="form-row">
+          <label>Set duration</label>
+          <div className="duration-row">
             <select
+              className="duration-select"
               value={duration}
               onChange={(e) => setDuration(e.target.value)}
             >
