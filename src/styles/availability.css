@@ -319,8 +319,6 @@
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
 }
 
-/* In week view, remove the separate header row and instead add a header row inside the content.
-     This example uses the .week-header-row class below if needed. */
 .week-header-row {
     display: grid;
     grid-template-columns: 70px repeat(7, 1fr) 70px;
@@ -330,13 +328,11 @@
     background-color: #f2f2f2;
 }
 
-/* The grid content row for week view */
 .grid-content-row {
     display: grid;
     grid-template-columns: 70px repeat(7, 1fr) 70px;
 }
 
-/* Common Grid Classes */
 .common-grid {
     display: grid;
     grid-template-columns: 70px 1fr 70px;
@@ -356,22 +352,18 @@
     padding: 0.5rem 0;
 }
 
-/* Calendar Content */
 .calendar-content {
     margin-top: 1rem;
 }
 
-/* Hide the vertical scrollbar in the scrollable container */
 .day-week-scrollable {
     max-height: 800px;
     overflow-y: auto;
     scrollbar-width: none;
-    /* Firefox */
 }
 
 .day-week-scrollable::-webkit-scrollbar {
     display: none;
-    /* Chrome, Safari and Opera */
 }
 
 .calendar-grid {
@@ -650,6 +642,25 @@
 }
 
 @media (max-width: 768px) {
+    .availability-white-box {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .availability-top-row {
+        display: none;
+    }
+
+    .center-controls {
+        display: none;
+    }
+
+    .day-header-cell {}
+
+    .calendar-view-card {}
+
+    .calendar-day-col {}
+
     .calendar-event-block .event-title {
         font-size: 0.5rem;
     }
