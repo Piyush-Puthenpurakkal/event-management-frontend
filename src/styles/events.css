@@ -228,12 +228,12 @@
 
 .conflict-tooltip {
     position: absolute;
-    top: 0px;
+    top: -1px;
     left: 20px;
     background-color: #fff;
     color: #333;
     border: 1px solid #ccc;
-    padding: 6px 8px;
+    padding: 3px 8px;
     border-radius: 10px;
     white-space: nowrap;
     font-size: 14px;
