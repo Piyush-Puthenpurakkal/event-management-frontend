@@ -644,7 +644,6 @@
 @media (max-width: 768px) {
     .availability-white-box {
         width: 100%;
-        overflow-x: auto;
     }
 
     .availability-top-row {
@@ -655,11 +654,21 @@
         display: none;
     }
 
-    .day-header-cell {}
+    .day-header-cell {
+        width: 50px;
+    }
 
-    .calendar-view-card {}
+    .calendar-view-card {
+        overflow-x: auto;
+    }
 
-    .calendar-day-col {}
+    .calendar-day-col {
+        width: 50px;
+    }
+
+    .calendar-hour-cell {
+        width: 50px;
+    }
 
     .calendar-event-block .event-title {
         font-size: 0.5rem;
