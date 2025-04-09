@@ -241,7 +241,7 @@
     overflow-y: auto;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 468px) {
 
     .booking-page-wrapper {
         padding: 1rem;
